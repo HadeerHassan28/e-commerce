@@ -3,7 +3,9 @@ import styles from "./Footer.module.css";
 const Footer = () => {
   return (
     <>
-      <h2>Footer</h2>
+      <div className="container">
+        <h1>Footer</h1>
+      </div>
     </>
   );
 };
