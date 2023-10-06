@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Register.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Register = () => {
+  let navigate = useNavigate();
+  const [isLoading, setisLoading] = useState(false);
+  const [msgError, setmsgError] = useState("");
   function handleRegister(values) {
-    console.log(values);
+    setisLoading(true);
+    axios
+      .post("https://ecommerce.routemisr.com/api/v1/auth/signup", values)
+      .then((response) => {
+        console.log(response);
+
+        if (response.data.message === "success") {
+          setisLoading(false);
+          setmsgError("");
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        setisLoading(false);
+        setmsgError(`${err.response.data.message} `);
+        console.log(err.response.data.message);
+      });
   }
+
   let validation = Yup.object({
     name: Yup.string()
       .required("name is required")
@@ -37,6 +59,9 @@ const Register = () => {
     <>
       <div className="w-75 mx-auto py-4">
         <h3>Register now:</h3>
+        {msgError.length > 0 ? (
+          <div className="alert alert-danger">{msgError}</div>
+        ) : null}
         <form onSubmit={formik.handleSubmit}>
           {/* name */}
           <label htmlFor="name">Name:</label>
@@ -113,13 +138,19 @@ const Register = () => {
             <div className="alert alert-danger">{formik.errors.phone}</div>
           ) : null}
 
-          <button
-            disabled={!(formik.isValid && formik.dirty)}
-            className="btn bg-main text-white float-end"
-            type="submit"
-          >
-            Register
-          </button>
+          {isLoading ? (
+            <button className="btn bg-main text-white float-end">
+              <i className="fas fa-spinner fa-spin"></i>
+            </button>
+          ) : (
+            <button
+              disabled={!(formik.isValid && formik.dirty)}
+              className="btn bg-main text-white float-end"
+              type="submit"
+            >
+              Register
+            </button>
+          )}
         </form>
       </div>
     </>
