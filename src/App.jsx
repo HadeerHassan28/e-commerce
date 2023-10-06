@@ -8,10 +8,12 @@ import Register from "./Components/Register/Register";
 import About from "./Components/About/About";
 import Categories from "./Components/Categories/Categories";
 import Brands from "./Components/Brands/Brands";
+import Logout from "./Components/Logout/Logout";
 import NotFound from "./Components/NotFound/NotFound";
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 function App() {
   const [userData, setUserData] = useState(null);
   function saveUserData() {
@@ -26,15 +28,27 @@ function App() {
       children: [
         {
           index: "true",
-          element: <Home />,
+          element: (
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "product",
-          element: <Products />,
+          element: (
+            <ProtectedRoute>
+              <Products />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "cart",
-          element: <Cart />,
+          element: (
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "login",
@@ -44,17 +58,34 @@ function App() {
           path: "register",
           element: <Register />,
         },
+
+        {
+          path: "logout",
+          element: <Logout />,
+        },
         {
           path: "categories",
-          element: <Categories />,
+          element: (
+            <ProtectedRoute>
+              <Categories />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "about",
-          element: <About />,
+          element: (
+            <ProtectedRoute>
+              <About />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "barnds",
-          element: <Brands />,
+          element: (
+            <ProtectedRoute>
+              <Brands />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "*",

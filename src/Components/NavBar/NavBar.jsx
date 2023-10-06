@@ -78,8 +78,8 @@ const NavBar = (userData) => {
                 </>
               ) : (
                 <li className="nav-item">
-                  <Link className="nav-link" to="signout">
-                    Sign out
+                  <Link className="nav-link" to="logout">
+                    Logout
                   </Link>
                 </li>
               )}
