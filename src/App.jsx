@@ -9,14 +9,20 @@ import About from "./Components/About/About";
 import Categories from "./Components/Categories/Categories";
 import Brands from "./Components/Brands/Brands";
 import NotFound from "./Components/NotFound/NotFound";
-
+import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
+import jwtDecode from "jwt-decode";
 function App() {
+  const [userData, setUserData] = useState(null);
+  function saveUserData() {
+    let encodedToken = localStorage.getItem("userToken");
+    let decodedToken = jwtDecode(encodedToken);
+    setUserData(decodedToken);
+  }
   let routes = createBrowserRouter([
     {
       path: "",
-      element: <Layout />,
+      element: <Layout userData={userData} />,
       children: [
         {
           index: "true",
@@ -32,7 +38,7 @@ function App() {
         },
         {
           path: "login",
-          element: <Login />,
+          element: <Login saveUserData={saveUserData} />,
         },
         {
           path: "register",

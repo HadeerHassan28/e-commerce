@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-const Login = () => {
+const Login = ({ saveUserData }) => {
   let navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
   const [msgError, setmsgError] = useState("");
@@ -13,9 +13,12 @@ const Login = () => {
     axios
       .post("https://ecommerce.routemisr.com/api/v1/auth/signin", values)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
 
         if (response.data.message === "success") {
+          // console.log(response.data.token);
+          localStorage.setItem("userToken", response.data.token);
+          saveUserData();
           setisLoading(false);
           setmsgError("");
           navigate("/");
@@ -101,3 +104,5 @@ const Login = () => {
 };
 
 export default Login;
+
+//eng.hadeer28@gmail.com  password:Hadeer123
