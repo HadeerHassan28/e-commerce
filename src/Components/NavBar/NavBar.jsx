@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./NavBar.module.css";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link } from "react-router-dom";
-const NavBar = (userData) => {
+
+const NavBar = ({ userData }) => {
+  const handleLogout = () => {
+    localStorage.removeItem("userToken");
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-sm navbar-light bg-light ">
@@ -78,7 +83,7 @@ const NavBar = (userData) => {
                 </>
               ) : (
                 <li className="nav-item">
-                  <Link className="nav-link" to="logout">
+                  <Link className="nav-link" to="login" onClick={handleLogout}>
                     Logout
                   </Link>
                 </li>

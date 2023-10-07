@@ -8,7 +8,6 @@ import Register from "./Components/Register/Register";
 import About from "./Components/About/About";
 import Categories from "./Components/Categories/Categories";
 import Brands from "./Components/Brands/Brands";
-import Logout from "./Components/Logout/Logout";
 import NotFound from "./Components/NotFound/NotFound";
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -59,10 +58,6 @@ function App() {
           element: <Register />,
         },
 
-        {
-          path: "logout",
-          element: <Logout />,
-        },
         {
           path: "categories",
           element: (

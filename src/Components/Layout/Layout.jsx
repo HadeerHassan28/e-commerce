@@ -3,7 +3,9 @@ import Footer from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
 // import styles from "./Layout.module.css";
 
-const Layout = (userData) => {
+const Layout = ({ userData }) => {
+  //console.log(userData);
+
   return (
     <>
       <NavBar userData={userData} />
