@@ -3,6 +3,7 @@ import Layout from "./Components/Layout/Layout";
 import Home from "./Components/Home/Home";
 import Cart from "./Components/Cart/Cart";
 import Products from "./Components/Products/Products";
+import ProductsDetails from "./Components/ProductsDetails/ProductsDetails";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
 import About from "./Components/About/About";
@@ -38,6 +39,14 @@ function App() {
           element: (
             <ProtectedRoute>
               <Products />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "productdetail/:id",
+          element: (
+            <ProtectedRoute>
+              <ProductsDetails />
             </ProtectedRoute>
           ),
         },
