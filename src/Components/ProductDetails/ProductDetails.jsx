@@ -9,7 +9,7 @@ const ProductDetails = () => {
 
   function getProductDetail(id) {
     axios
-      .get("https://ecommerce.routemisr.com/api/v1/products/${id}")
+      .get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
       .then((response) => {
         setproductDetail(response.data.data);
         //console.log(response.data.data);
@@ -24,25 +24,38 @@ const ProductDetails = () => {
 
   if (!productDetail) {
     return (
-      <div className="container ">
+      <div className="container d-flex justify-content-center align-items-center vh-100">
         <h3 className="h3 text-main fw-bolder">Loading...</h3>
       </div>
     );
   }
   return (
     <>
-      <div className={styles.productDetails}>
-        <h2>{productDetail.title}</h2>
-        <img
-          src={productDetail.imageCover}
-          alt={productDetail.title}
-          className={styles.productImage}
-        />
-        <p>{productDetail.description}</p>
-        <p>Price: {productDetail.price} EGP</p>
-        <p>Ratings: {productDetail.ratingsAverage}</p>
+      <div className="container">
+        <div className="row ">
+          <div className="col-md-5 d-flex align-items-center flex-column ">
+            <img
+              src={productDetail.imageCover}
+              alt={productDetail.title}
+              className="img-fluid"
+            />
+          </div>
+          <div className="col-md-7  d-flex align-self-center flex-column">
+            <h2>{productDetail.title}</h2>
+            <p>{productDetail.description}</p>
+            <div className="d-flex justify-content-between">
+              <span className="text-muted">{productDetail.price} EGP</span>
+              <span>
+                <i className="fas fa-star rating-color"></i>
+                {productDetail.ratingsAverage}
+              </span>
+            </div>
+            <button className="btn bg-main text-white w-100">
+              Add to Cart
+            </button>
+          </div>
+        </div>
       </div>
-      );
     </>
   );
 };

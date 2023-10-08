@@ -27,7 +27,7 @@ const NavBar = ({ userData }) => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="collapsibleNavId">
-            {userData !== null ? (
+            {/* {userData !== null ? (
               <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                 <li className="nav-item">
                   <Link className="nav-link" to="/">
@@ -59,8 +59,38 @@ const NavBar = ({ userData }) => {
                   </Link>
                 </li>
               </ul>
-            ) : null}
+            ) : null} */}
+            <ul className="navbar-nav me-auto mt-2 mt-lg-0">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  Home
+                </Link>
+              </li>
 
+              <li className="nav-item">
+                <Link className="nav-link" to="cart">
+                  Cart
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="product">
+                  Prodect
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="categories">
+                  Categries
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="barnds">
+                  Brands
+                </Link>
+              </li>
+            </ul>
             <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
               <li className="nav-item d-flex align-items-center">
                 <i className="fab fa-facebook mx-2"></i>
