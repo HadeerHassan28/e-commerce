@@ -10,10 +10,10 @@ import About from "./Components/About/About";
 import Categories from "./Components/Categories/Categories";
 import Brands from "./Components/Brands/Brands";
 import NotFound from "./Components/NotFound/NotFound";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 function App() {
   const [userData, setUserData] = useState(null);
   function saveUserData() {

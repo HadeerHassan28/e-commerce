@@ -7,6 +7,13 @@ const ProductDetails = () => {
   const [productDetail, setproductDetail] = useState(null);
   let params = useParams();
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   function getProductDetail(id) {
     axios
       .get(`https://ecommerce.routemisr.com/api/v1/products/${id}`)
@@ -21,7 +28,7 @@ const ProductDetails = () => {
   useEffect(() => {
     getProductDetail(params.id);
   }, [params.id]);
-
+  //console.log(productDetail.images);
   if (!productDetail) {
     return (
       <div className="container d-flex justify-content-center align-items-center vh-100">
@@ -32,13 +39,22 @@ const ProductDetails = () => {
   return (
     <>
       <div className="container">
-        <div className="row ">
-          <div className="col-md-5 d-flex align-items-center flex-column ">
-            <img
-              src={productDetail.imageCover}
-              alt={productDetail.title}
-              className="img-fluid"
-            />
+        <div className="row">
+          <div className="col-md-5 mb-5 ">
+            <Slider {...settings}>
+              {productDetail?.images.map((img, index) => (
+                <>
+                  <div className="d-flex align-items-center flex-column mt-5 ">
+                    <img
+                      key={index}
+                      src={img}
+                      alt={`product img ${index}`}
+                      className="w-75"
+                    />
+                  </div>
+                </>
+              ))}
+            </Slider>
           </div>
           <div className="col-md-7  d-flex align-self-center flex-column">
             <h2>{productDetail.title}</h2>

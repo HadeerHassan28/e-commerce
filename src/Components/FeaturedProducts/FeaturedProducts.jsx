@@ -18,7 +18,13 @@ const FeaturedProducts = () => {
   useEffect(() => {
     getProduct();
   }, []);
-
+  if (!products) {
+    return (
+      <div className="container d-flex justify-content-center align-items-center vh-100">
+        <h3 className="h3 text-main fw-bolder">Loading...</h3>
+      </div>
+    );
+  }
   return (
     <>
       <div className="row">
