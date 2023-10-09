@@ -44,9 +44,11 @@ const ProductDetails = () => {
             <Slider {...settings}>
               {productDetail?.images.map((img, index) => (
                 <>
-                  <div className="d-flex align-items-center flex-column mt-5 ">
+                  <div
+                    className="d-flex align-items-center flex-column mt-5 "
+                    key={index}
+                  >
                     <img
-                      key={index}
                       src={img}
                       alt={`product img ${index}`}
                       className="w-75"
