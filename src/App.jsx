@@ -13,9 +13,10 @@ import NotFound from "./Components/NotFound/NotFound";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import jwtDecode from "jwt-decode";
 import CartContextProvider from "./Context/CartContext";
 import { Toaster } from "react-hot-toast";
+import UserDataContextProvider from "./Context/UserDataContext";
+
 function App() {
   const [userData, setUserData] = useState(null);
   function saveUserData() {
@@ -26,7 +27,7 @@ function App() {
   let routes = createBrowserRouter([
     {
       path: "",
-      element: <Layout userData={userData} />,
+      element: <Layout />,
       children: [
         {
           index: "true",
@@ -102,12 +103,14 @@ function App() {
   ]);
   return (
     <>
-      <CartContextProvider>
-        <Toaster />
-        <RouterProvider router={routes}>
-          <Layout />
-        </RouterProvider>
-      </CartContextProvider>
+      <UserDataContextProvider>
+        <CartContextProvider>
+          <Toaster />
+          <RouterProvider router={routes}>
+            <Layout />
+          </RouterProvider>
+        </CartContextProvider>
+      </UserDataContextProvider>
     </>
   );
 }

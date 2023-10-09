@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./NavBar.module.css";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link } from "react-router-dom";
+import { userDataContext } from "../../Context/UserDataContext";
 
-const NavBar = ({ userData }) => {
+const NavBar = () => {
+  const userData = useContext(userDataContext);
   const handleLogout = () => {
     localStorage.removeItem("userToken");
   };

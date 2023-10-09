@@ -3,12 +3,12 @@ import Footer from "../Footer/Footer";
 import { Outlet } from "react-router-dom";
 // import styles from "./Layout.module.css";
 
-const Layout = ({ userData }) => {
+const Layout = () => {
   //console.log(userData);
 
   return (
     <>
-      <NavBar userData={userData} />
+      <NavBar />
       <div className="container">
         <Outlet />
       </div>
