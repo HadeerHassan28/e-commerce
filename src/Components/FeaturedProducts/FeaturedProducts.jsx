@@ -1,9 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./FeaturedProducts.module.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { cartContext } from "../../Context/CartContext";
+import toast from "react-hot-toast";
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useContext(cartContext);
+  async function addProduct(productId) {
+    let response = await addToCart(productId);
+    // console.log(response);
+    if (response?.data?.status === "success") {
+      toast.success(response.data.message, {
+        duration: 2000,
+      });
+    } else {
+      toast.error("Something went wrong", {
+        duration: 2000,
+      });
+    }
+  }
   function getProduct() {
     axios
       .get("https://ecommerce.routemisr.com/api/v1/products")
@@ -32,8 +48,8 @@ const FeaturedProducts = () => {
         <h2 className="text-muted mb-2">Products </h2>
         {products.map((ele) => (
           <div key={ele.id} className="col-md-2">
-            <Link to={`/productdetail/${ele.id}`}>
-              <div className="product px-2 py-3 cursor-pointer">
+            <div className="product px-2 py-3 cursor-pointer">
+              <Link to={`/productdetail/${ele.id}`}>
                 <img
                   alt="product name"
                   src={ele.imageCover}
@@ -52,9 +68,14 @@ const FeaturedProducts = () => {
                     {ele.ratingsAverage}{" "}
                   </span>
                 </div>
-                <button className="btn bg-main text-white w-100">+ Add</button>
-              </div>
-            </Link>
+              </Link>
+              <button
+                className="btn bg-main text-white w-100 product"
+                onClick={() => addProduct(ele.id)}
+              >
+                + Add
+              </button>
+            </div>
           </div>
         ))}
       </div>

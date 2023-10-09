@@ -14,6 +14,8 @@ import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import CartContextProvider from "./Context/CartContext";
+import { Toaster } from "react-hot-toast";
 function App() {
   const [userData, setUserData] = useState(null);
   function saveUserData() {
@@ -100,9 +102,12 @@ function App() {
   ]);
   return (
     <>
-      <RouterProvider router={routes}>
-        <Layout />
-      </RouterProvider>
+      <CartContextProvider>
+        <Toaster />
+        <RouterProvider router={routes}>
+          <Layout />
+        </RouterProvider>
+      </CartContextProvider>
     </>
   );
 }
