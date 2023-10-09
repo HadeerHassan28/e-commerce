@@ -21,13 +21,15 @@ const FeaturedProducts = () => {
   if (!products) {
     return (
       <div className="container d-flex justify-content-center align-items-center vh-100">
-        <h3 className="h3 text-main fw-bolder">Loading...</h3>
+        <i className="fas fa-spinner fa-spin fa-3x text-main" />
+        {/* <h3 className="h3 text-main fw-bolder">Loading...</h3> */}
       </div>
     );
   }
   return (
     <>
-      <div className="row">
+      <div className="row mt-5">
+        <h2 className="text-muted mb-2">Products </h2>
         {products.map((ele) => (
           <div key={ele.id} className="col-md-2">
             <Link to={`/productdetail/${ele.id}`}>

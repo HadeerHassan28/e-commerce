@@ -25,9 +25,17 @@ const CategrySlider = () => {
   useEffect(() => {
     getCategries();
   }, []);
-
+  if (!categries) {
+    return (
+      <div className="container d-flex justify-content-center align-items-center vh-100">
+        <i className="fas fa-spinner fa-spin fa-3x text-main" />
+        {/* <h3 className="h3 text-main fw-bolder">Loading...</h3> */}
+      </div>
+    );
+  }
   return (
     <>
+      <h2 className="text-muted mb-2">Shop Popular Categories </h2>
       <Slider {...settings}>
         {categries?.map((category) => (
           <>
