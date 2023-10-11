@@ -11,7 +11,7 @@ const Cart = () => {
 
   async function getCart() {
     let response = await getLoggedUserCart();
-    console.log("response", response.data.data);
+    //console.log("response", response.data.data);
     if (response?.data?.status === "success") {
       setCartDetail(response.data.data);
     }
@@ -100,10 +100,17 @@ const Cart = () => {
           <h6 className="text-main h4">
             Total Cart Price: {cartDetail.totalCartPrice} EGP
           </h6>
-          <div className="my-3 ">
+          <div className="my-3 d-flex justify-content-around ">
             <button className="btn bg-main">
               <Link to="/checkout" className="text-white">
                 <i className="fa-brands fa-cc-visa m-2" />
+                Check Out
+              </Link>
+            </button>
+
+            <button className="btn bg-main">
+              <Link to="/allorders" className="text-white mx-2">
+                <i className="fa-regular fa-money-bill-1 m-2" />
                 Check Out
               </Link>
             </button>

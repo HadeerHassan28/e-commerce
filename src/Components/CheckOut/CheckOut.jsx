@@ -21,13 +21,13 @@ const CheckOut = () => {
   });
   return (
     <>
-      <div className="w-50 py-5 mx-auto">
+      <div className="w-50 pt-5 mx-auto vh-100 ">
         <form onSubmit={formik.handleSubmit}>
           {/* details */}
           <label htmlFor="details">Details :</label>
           <input
             type="text"
-            className="form-control mb-3"
+            className="form-control mb-3 "
             name="details"
             id="details"
             value={formik.values.details}

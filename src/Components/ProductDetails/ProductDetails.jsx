@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./ProductDetails.module.css";
 import axios from "axios";
 import Slider from "react-slick";
+import { cartContext } from "../../Context/CartContext";
+import toast from "react-hot-toast";
 const ProductDetails = () => {
+  const { addToCart } = useContext(cartContext);
   const [productDetail, setproductDetail] = useState(null);
   let params = useParams();
 
@@ -24,6 +27,19 @@ const ProductDetails = () => {
       .catch((error) => {
         console.error("Error fetching product details:", error);
       });
+  }
+  async function addProduct(id) {
+    let response = await addToCart(id);
+    // console.log(response);
+    if (response?.data?.status === "success") {
+      toast.success(response.data.message, {
+        duration: 2000,
+      });
+    } else {
+      toast.error("Something went wrong", {
+        duration: 2000,
+      });
+    }
   }
   useEffect(() => {
     getProductDetail(params.id);
@@ -69,7 +85,11 @@ const ProductDetails = () => {
                 {productDetail.ratingsAverage}
               </span>
             </div>
-            <button className="btn bg-main text-white w-100">
+            {console.log(productDetail)}
+            <button
+              className="btn bg-main text-white w-100"
+              onClick={() => addProduct(productDetail._id)}
+            >
               Add to Cart
             </button>
           </div>
