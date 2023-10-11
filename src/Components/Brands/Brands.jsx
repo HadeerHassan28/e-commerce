@@ -27,7 +27,7 @@ const Brands = () => {
         <div className="row">
           {data.data.map((ele) => (
             <div
-              className="col-md-3 border-main my-2 justify-content-center"
+              className="col-md-4 border-main my-2 justify-content-center"
               key={ele._id}
             >
               <img src={ele.image} alt={ele.name} className="w-50" />
