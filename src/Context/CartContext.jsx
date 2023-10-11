@@ -68,12 +68,30 @@ let CartContextProvider = ({ children }) => {
       .then((response) => response)
       .catch((error) => error);
   };
+
+  //! For online Payment:
+  const onlinePayment = (cartId, shippingAddress) => {
+    return axios
+      .post(
+        `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=http://localhost:5173`,
+        {
+          shippingAddress: shippingAddress,
+        },
+        {
+          headers: header,
+        }
+      )
+      .then((response) => response)
+      .catch((error) => error);
+  };
+
   const values = {
     addToCart: addToCart,
     getLoggedUserCart: getLoggedUserCart,
     removeItem: removeItem,
     updateProductCount: updateProductCount,
     delateCart: delateCart,
+    onlinePayment: onlinePayment,
   };
   return <cartContext.Provider value={values}>{children}</cartContext.Provider>;
 };

@@ -9,14 +9,16 @@ import Register from "./Components/Register/Register";
 import About from "./Components/About/About";
 import Categories from "./Components/Categories/Categories";
 import Brands from "./Components/Brands/Brands";
+import CheckOut from "./Components/CheckOut/CheckOut";
+import AllOrders from "./Components/AllOrders/AllOrders";
 import NotFound from "./Components/NotFound/NotFound";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CartContextProvider from "./Context/CartContext";
 import { Toaster } from "react-hot-toast";
 import UserDataContextProvider from "./Context/UserDataContext";
-
+import jwtDecode from "jwt-decode";
 function App() {
   const [userData, setUserData] = useState(null);
   function saveUserData() {
@@ -91,6 +93,22 @@ function App() {
           element: (
             <ProtectedRoute>
               <Brands />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "checkout",
+          element: (
+            <ProtectedRoute>
+              <CheckOut />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "allorders",
+          element: (
+            <ProtectedRoute>
+              <AllOrders />
             </ProtectedRoute>
           ),
         },

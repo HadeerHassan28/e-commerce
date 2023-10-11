@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { cartContext } from "../../Context/CartContext";
 import styles from "./Cart.module.css";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 const Cart = () => {
   let { getLoggedUserCart, removeItem, updateProductCount, delateCart } =
     useContext(cartContext);
@@ -52,7 +53,7 @@ const Cart = () => {
           <h3>Shop Cart</h3>
           {cartDetail.products.map((ele) => (
             <div
-              className="row border-bottom py-2 my-2 align-items-center"
+              className="row border-bottom py-2 my-2 align-items-center "
               key={ele.product._id}
             >
               <div className="col-md-2">
@@ -99,6 +100,15 @@ const Cart = () => {
           <h6 className="text-main h4">
             Total Cart Price: {cartDetail.totalCartPrice} EGP
           </h6>
+          <div className="my-3 ">
+            <button className="btn bg-main">
+              <Link to="/checkout" className="text-white">
+                <i className="fa-brands fa-cc-visa m-2" />
+                Check Out
+              </Link>
+            </button>
+          </div>
+
           <button className="btn m-0 p-0" onClick={clearCart}>
             <i className="fa-regular fa-trash-can p-1 text-main" />
             Clear the Cart

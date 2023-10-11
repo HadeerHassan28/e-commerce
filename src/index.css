@@ -53,3 +53,7 @@ a:hover {
 .border-main {
   border: solid 1px var(--main-color) !important;
 }
+.pay:hover {
+  background-color: var(--main-color);
+  color: var(--light-color);
+}
