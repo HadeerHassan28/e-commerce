@@ -21,7 +21,7 @@ const Brands = () => {
   return (
     <>
       <div className="container">
-        <h2 className="d-flex justify-content-center mt-3 text-bold">
+        <h2 className="d-flex justify-content-center mt-5 text-muted">
           <strong> Our Brands</strong>
         </h2>
         <div className="row">
