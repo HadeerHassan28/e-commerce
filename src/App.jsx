@@ -11,6 +11,7 @@ import Categories from "./Components/Categories/Categories";
 import Brands from "./Components/Brands/Brands";
 import CheckOut from "./Components/CheckOut/CheckOut";
 import AllOrders from "./Components/AllOrders/AllOrders";
+import WishList from "./Components/WishList/WishList";
 import NotFound from "./Components/NotFound/NotFound";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import { useState, useContext } from "react";
@@ -109,6 +110,14 @@ function App() {
           element: (
             <ProtectedRoute>
               <AllOrders />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "wishlist",
+          element: (
+            <ProtectedRoute>
+              <WishList />
             </ProtectedRoute>
           ),
         },

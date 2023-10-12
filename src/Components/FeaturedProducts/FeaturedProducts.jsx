@@ -4,6 +4,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { cartContext } from "../../Context/CartContext";
 import toast from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
   const { addToCart } = useContext(cartContext);
@@ -50,6 +53,9 @@ const FeaturedProducts = () => {
           <div key={ele.id} className="col-md-2">
             <div className="product px-2 py-3 cursor-pointer">
               <Link to={`/productdetail/${ele.id}`}>
+                <div className="heart-icon">
+                  <FontAwesomeIcon icon={faHeart} className="heart" />
+                </div>
                 <img
                   alt="product name"
                   src={ele.imageCover}
