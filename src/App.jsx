@@ -12,6 +12,7 @@ import Brands from "./Components/Brands/Brands";
 import CheckOut from "./Components/CheckOut/CheckOut";
 import AllOrders from "./Components/AllOrders/AllOrders";
 import WishList from "./Components/WishList/WishList";
+import Profile from "./Components/Profile/Profile";
 import NotFound from "./Components/NotFound/NotFound";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import { useState, useContext } from "react";
@@ -31,7 +32,7 @@ function App() {
   let routes = createBrowserRouter([
     {
       path: "",
-      element: <Layout />,
+      element: <Layout userData={userData} />,
       children: [
         {
           index: "true",
@@ -120,6 +121,14 @@ function App() {
           element: (
             <ProtectedRoute>
               <WishList />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "profile",
+          element: (
+            <ProtectedRoute>
+              <Profile userData={userData} />
             </ProtectedRoute>
           ),
         },

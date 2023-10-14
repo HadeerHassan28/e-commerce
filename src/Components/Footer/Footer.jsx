@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 export default function App() {
   return (
-    <MDBFooter bgColor="light" className="text-center text-lg-left">
+    <MDBFooter bgColor="light" className="text-center text-lg-left mt-auto">
       <MDBContainer className="p-4 pb-0">
         <form action="">
           <MDBRow className="d-flex justify-content-center">

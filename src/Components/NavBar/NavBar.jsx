@@ -2,11 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "./NavBar.module.css";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link } from "react-router-dom";
-import { userDataContext } from "../../Context/UserDataContext";
+
 import { cartContext } from "../../Context/CartContext";
 
-const NavBar = () => {
-  const userData = useContext(userDataContext);
+const NavBar = ({ userData }) => {
   const { numOfCartItem } = useContext(cartContext);
   //console.log(numOfCartItem);
   const handleLogout = () => {
@@ -102,7 +101,9 @@ const NavBar = () => {
               {userData === null ? (
                 <>
                   <li className="nav-item">
-                    <Link className="nav-link">Login</Link>
+                    <Link className="nav-link" to="/login">
+                      Login
+                    </Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="register">
@@ -113,20 +114,23 @@ const NavBar = () => {
               ) : (
                 <>
                   <li className="nav-item position-relative">
+                    <Link className="nav-link px-2" to="profile">
+                      <i className="fa-solid fa-user"></i>
+                    </Link>
+                  </li>
+
+                  <li className="nav-item position-relative">
                     <Link className="nav-link px-2" to="cart">
                       <i className="fas fa-shopping-cart fa-lg"></i>
-                      {/* <span className="badge bg-main text-white position-absolute top-0 end-0">
+                      <span className="badge bg-main text-white position-absolute top-0 end-0">
                         {numOfCartItem}
-                      </span> */}
+                      </span>
                     </Link>
                   </li>
 
                   <li className="nav-item position-relative mx-2">
                     <Link className="nav-link px-2" to="wishlist">
                       <i className="fa-solid fa-heart fa-lg"></i>
-                      <span className="badge bg-main text-white position-absolute top-0 end-0">
-                        {}
-                      </span>
                     </Link>
                   </li>
 
