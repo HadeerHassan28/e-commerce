@@ -54,7 +54,7 @@ let CartContextProvider = ({ children }) => {
         }
       )
       .then((response) => {
-        setnumOfCartItem(response.data.numOfCartItems - 1);
+        setnumOfCartItem(response.data.numOfCartItems);
 
         return response;
       })
