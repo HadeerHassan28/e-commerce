@@ -98,6 +98,34 @@ let CartContextProvider = ({ children }) => {
       .then((response) => response)
       .catch((error) => error);
   };
+  //! For wishList:
+  const addToWishList = (productId) => {
+    return axios
+      .post(
+        `https://ecommerce.routemisr.com/api/v1/wishlist`,
+        {
+          productId: productId,
+        },
+        {
+          headers: header,
+        }
+      )
+      .then((response) => response)
+      .catch((error) => error);
+  };
+
+  const getProductToWishList = () => {
+    return axios
+      .get(
+        `https://ecommerce.routemisr.com/api/v1/wishlist`,
+
+        {
+          headers: header,
+        }
+      )
+      .then((response) => response)
+      .catch((error) => error);
+  };
 
   const values = {
     addToCart: addToCart,
@@ -109,6 +137,8 @@ let CartContextProvider = ({ children }) => {
     cartId: cartId,
     numOfCartItem: numOfCartItem,
     setnumOfCartItem: setnumOfCartItem,
+    addToWishList: addToWishList,
+    getProductToWishList: getProductToWishList,
   };
   return <cartContext.Provider value={values}>{children}</cartContext.Provider>;
 };

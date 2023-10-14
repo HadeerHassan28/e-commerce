@@ -4,12 +4,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { cartContext } from "../../Context/CartContext";
 import toast from "react-hot-toast";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
-  const { addToCart, setnumOfCartItem } = useContext(cartContext);
+  const [productsList, setProductsList] = useState([]);
+  const { addToCart, setnumOfCartItem, addToWishList } =
+    useContext(cartContext);
   async function addProduct(productId) {
     let response = await addToCart(productId);
     // console.log(response);
@@ -35,6 +35,21 @@ const FeaturedProducts = () => {
         console.error("Error fetching product details:", error);
       });
   }
+  async function addProductToList(productId) {
+    let response = await addToWishList(productId);
+    // console.log(response);
+    if (response?.data?.status === "success") {
+      setProductsList(response.data);
+
+      toast.success(response.data.message, {
+        duration: 2000,
+      });
+    } else {
+      toast.error("Something went wrong", {
+        duration: 2000,
+      });
+    }
+  }
   useEffect(() => {
     getProduct();
   }, []);
@@ -53,10 +68,15 @@ const FeaturedProducts = () => {
         {products.map((ele) => (
           <div key={ele.id} className="col-md-2">
             <div className="product px-2 py-3 cursor-pointer">
+              <div className="heart-icon d-flex justify-content-end">
+                <button
+                  className="btn bg-main"
+                  onClick={() => addProductToList(ele.id)}
+                >
+                  <i className="fa-regular fa-heart" />
+                </button>
+              </div>
               <Link to={`/productdetail/${ele.id}`}>
-                <div className="heart-icon">
-                  <FontAwesomeIcon icon={faHeart} className="heart" />
-                </div>
                 <img
                   alt="product name"
                   src={ele.imageCover}

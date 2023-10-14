@@ -115,8 +115,17 @@ const NavBar = () => {
                   <li className="nav-item position-relative">
                     <Link className="nav-link px-2" to="cart">
                       <i className="fas fa-shopping-cart fa-lg"></i>
-                      <span className="badge bg-main text-white position-absolute top-0 end-0">
+                      {/* <span className="badge bg-main text-white position-absolute top-0 end-0">
                         {numOfCartItem}
+                      </span> */}
+                    </Link>
+                  </li>
+
+                  <li className="nav-item position-relative mx-2">
+                    <Link className="nav-link px-2" to="wishlist">
+                      <i className="fa-solid fa-heart fa-lg"></i>
+                      <span className="badge bg-main text-white position-absolute top-0 end-0">
+                        {}
                       </span>
                     </Link>
                   </li>
