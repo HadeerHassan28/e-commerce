@@ -141,17 +141,15 @@ function App() {
   ]);
   return (
     <>
-      <UserDataContextProvider>
-        <CartContextProvider>
-          <div className="network">
-            <Offline>Only shown offline</Offline>
-          </div>
-          <Toaster />
-          <RouterProvider router={routes}>
-            <Layout />
-          </RouterProvider>
-        </CartContextProvider>
-      </UserDataContextProvider>
+      <CartContextProvider>
+        <div className="network">
+          <Offline>Only shown offline</Offline>
+        </div>
+        <Toaster />
+        <RouterProvider router={routes}>
+          <Layout />
+        </RouterProvider>
+      </CartContextProvider>
     </>
   );
 }
