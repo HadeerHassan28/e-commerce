@@ -1,8 +1,22 @@
 import axios from "axios";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export let cartContext = createContext();
 let CartContextProvider = ({ children }) => {
+  //? to make once login is done the cart is open and the num of items appeare
+  const [cartId, setcartId] = useState(null);
+  const [numOfCartItem, setnumOfCartItem] = useState(0);
+  async function getCart() {
+    let response = await getLoggedUserCart();
+    if (response?.data?.status === "success") {
+      setnumOfCartItem(response.data.numOfCartItems);
+      //console.log("context", response.data.numOfCartItems);
+      setcartId(response.data.data._id);
+    }
+  }
+  useEffect(() => {
+    getCart();
+  }, []);
   let header = { token: localStorage.getItem("userToken") };
   const addToCart = (productId) => {
     return axios
@@ -92,6 +106,9 @@ let CartContextProvider = ({ children }) => {
     updateProductCount: updateProductCount,
     delateCart: delateCart,
     onlinePayment: onlinePayment,
+    cartId: cartId,
+    numOfCartItem: numOfCartItem,
+    setnumOfCartItem: setnumOfCartItem,
   };
   return <cartContext.Provider value={values}>{children}</cartContext.Provider>;
 };

@@ -6,7 +6,7 @@ import silder3 from "../../assets/images/slider-image-1.jpeg";
 const MainSlider = () => {
   return (
     <>
-      <div className="row my-3">
+      <div className="row pt-5">
         <div className="col-md-8">
           <img src={silder2} alt="slider-2" className="w-100" height={200} />
         </div>

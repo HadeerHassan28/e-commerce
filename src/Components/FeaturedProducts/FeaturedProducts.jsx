@@ -9,11 +9,12 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 const FeaturedProducts = () => {
   const [products, setProducts] = useState([]);
-  const { addToCart } = useContext(cartContext);
+  const { addToCart, setnumOfCartItem } = useContext(cartContext);
   async function addProduct(productId) {
     let response = await addToCart(productId);
     // console.log(response);
     if (response?.data?.status === "success") {
+      setnumOfCartItem(response.data.numOfCartItems);
       toast.success(response.data.message, {
         duration: 2000,
       });

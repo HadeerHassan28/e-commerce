@@ -4,9 +4,9 @@ import { useFormik } from "formik";
 import { cartContext } from "../../Context/CartContext";
 
 const CheckOut = () => {
-  const { onlinePayment } = useContext(cartContext);
+  const { onlinePayment, cartId } = useContext(cartContext);
   async function handleSubmit(values) {
-    let response = await onlinePayment("652687e7ed531f167ba2ded1", values);
+    let response = await onlinePayment(cartId, values);
     console.log(response);
     if (response?.data?.status === "success")
       window.location.href = response.data.session.url;

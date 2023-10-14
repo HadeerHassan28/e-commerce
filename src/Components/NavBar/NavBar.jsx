@@ -3,16 +3,19 @@ import styles from "./NavBar.module.css";
 import logo from "../../assets/images/freshcart-logo.svg";
 import { Link } from "react-router-dom";
 import { userDataContext } from "../../Context/UserDataContext";
+import { cartContext } from "../../Context/CartContext";
 
 const NavBar = () => {
   const userData = useContext(userDataContext);
+  const { numOfCartItem } = useContext(cartContext);
+  //console.log(numOfCartItem);
   const handleLogout = () => {
     localStorage.removeItem("userToken");
   };
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-light bg-light ">
+      <nav className="navbar navbar-expand-sm navbar-light bg-light  fixed-top">
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img src={logo} alt="Logo"></img>
@@ -70,12 +73,6 @@ const NavBar = () => {
               </li>
 
               <li className="nav-item">
-                <Link className="nav-link" to="cart">
-                  Cart
-                </Link>
-              </li>
-
-              <li className="nav-item">
                 <Link className="nav-link" to="product">
                   Prodect
                 </Link>
@@ -114,11 +111,26 @@ const NavBar = () => {
                   </li>{" "}
                 </>
               ) : (
-                <li className="nav-item">
-                  <Link className="nav-link" to="login" onClick={handleLogout}>
-                    Logout
-                  </Link>
-                </li>
+                <>
+                  <li className="nav-item position-relative">
+                    <Link className="nav-link px-2" to="cart">
+                      <i className="fas fa-shopping-cart fa-lg"></i>
+                      <span className="badge bg-main text-white position-absolute top-0 end-0">
+                        {numOfCartItem}
+                      </span>
+                    </Link>
+                  </li>
+
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      to="login"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                </>
               )}
             </ul>
           </div>

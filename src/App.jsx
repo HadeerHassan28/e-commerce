@@ -17,9 +17,10 @@ import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import { useState, useContext } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CartContextProvider from "./Context/CartContext";
-import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import UserDataContextProvider from "./Context/UserDataContext";
 import jwtDecode from "jwt-decode";
+import { Offline, Online } from "react-detect-offline";
 function App() {
   const [userData, setUserData] = useState(null);
   function saveUserData() {
@@ -132,6 +133,9 @@ function App() {
     <>
       <UserDataContextProvider>
         <CartContextProvider>
+          <div className="network">
+            <Offline>Only shown offline</Offline>
+          </div>
           <Toaster />
           <RouterProvider router={routes}>
             <Layout />
