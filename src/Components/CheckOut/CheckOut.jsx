@@ -9,8 +9,7 @@ const CheckOut = () => {
     let response = await onlinePayment(cartId, values);
     //console.log(response);
     if (response?.data?.status === "success")
-      // window.location.href = response.data.session.url;
-      window.open(response.data.session.url, "_blank");
+      window.location.href = response.data.session.url;
   }
   const formik = useFormik({
     initialValues: {
