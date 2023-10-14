@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import { cartContext } from "../../Context/CartContext";
 import toast from "react-hot-toast";
 const ProductDetails = () => {
-  const { addToCart } = useContext(cartContext);
+  const { addToCart, setnumOfCartItem } = useContext(cartContext);
   const [productDetail, setproductDetail] = useState(null);
   let params = useParams();
 
@@ -32,6 +32,7 @@ const ProductDetails = () => {
     let response = await addToCart(id);
     // console.log(response);
     if (response?.data?.status === "success") {
+      setnumOfCartItem(response.data.numOfCartItems);
       toast.success(response.data.message, {
         duration: 2000,
       });
