@@ -53,7 +53,11 @@ let CartContextProvider = ({ children }) => {
           headers: header,
         }
       )
-      .then((response) => response)
+      .then((response) => {
+        setnumOfCartItem(response.data.numOfCartItems - 1);
+
+        return response;
+      })
       .catch((error) => error);
   };
   const updateProductCount = (productId, count) => {
@@ -79,7 +83,10 @@ let CartContextProvider = ({ children }) => {
           headers: header,
         }
       )
-      .then((response) => response)
+      .then((response) => {
+        setnumOfCartItem(0);
+        return response;
+      })
       .catch((error) => error);
   };
 

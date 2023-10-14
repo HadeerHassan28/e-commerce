@@ -7,7 +7,7 @@ import { cartContext } from "../../Context/CartContext";
 
 const NavBar = ({ userData }) => {
   const { numOfCartItem } = useContext(cartContext);
-  //console.log(numOfCartItem);
+  console.log(numOfCartItem);
   const handleLogout = () => {
     localStorage.removeItem("userToken");
   };
@@ -122,6 +122,7 @@ const NavBar = ({ userData }) => {
                   <li className="nav-item position-relative">
                     <Link className="nav-link px-2" to="cart">
                       <i className="fas fa-shopping-cart fa-lg"></i>
+
                       <span className="badge bg-main text-white position-absolute top-0 end-0">
                         {numOfCartItem}
                       </span>
