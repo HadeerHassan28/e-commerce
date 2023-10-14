@@ -15,13 +15,13 @@ import WishList from "./Components/WishList/WishList";
 import Profile from "./Components/Profile/Profile";
 import NotFound from "./Components/NotFound/NotFound";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CartContextProvider from "./Context/CartContext";
-import { toast, Toaster } from "react-hot-toast";
-import UserDataContextProvider from "./Context/UserDataContext";
+import { Toaster } from "react-hot-toast";
+
 import jwtDecode from "jwt-decode";
-import { Offline, Online } from "react-detect-offline";
+import { Offline } from "react-detect-offline";
 function App() {
   const [userData, setUserData] = useState(null);
   function saveUserData() {
