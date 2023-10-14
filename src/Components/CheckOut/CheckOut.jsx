@@ -7,9 +7,10 @@ const CheckOut = () => {
   const { onlinePayment, cartId } = useContext(cartContext);
   async function handleSubmit(values) {
     let response = await onlinePayment(cartId, values);
-    console.log(response);
+    //console.log(response);
     if (response?.data?.status === "success")
-      window.location.href = response.data.session.url;
+      // window.location.href = response.data.session.url;
+      window.open(response.data.session.url, "_blank");
   }
   const formik = useFormik({
     initialValues: {
